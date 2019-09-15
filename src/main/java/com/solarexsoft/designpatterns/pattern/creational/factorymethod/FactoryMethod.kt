@@ -39,3 +39,8 @@ fun main() {
     val factory = CppVideoFactory()
     factory.createVideo().produce()
 }
+
+// Collection.java iterator()
+// URLStreamHandlerFactory.java createURLStreamHandler
+// URLStreamHandler
+// log4j ILoggerFactory
