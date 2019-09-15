@@ -15,38 +15,44 @@ class MoocCourse(builder: MoocCourseBuilder) {
         this.article = builder.article
     }
 
+    class MoocCourseBuilder() {
+        var name = "";
+        var ppt = "";
+        var article = "";
+        fun buildCourseName(name: String): MoocCourseBuilder {
+            this.name = name
+            return this
+        }
+
+        fun buildCoursePpt(ppt: String): MoocCourseBuilder {
+            this.ppt = ppt
+            return this
+        }
+
+        fun buildCourseArticle(article: String): MoocCourseBuilder {
+            this.article = article
+            return this
+        }
+
+        fun build(): MoocCourse {
+            return MoocCourse(this)
+        }
+    }
+
     override fun toString(): String {
         return "name = $name,ppt = $ppt,article = $article"
     }
 }
 
-class MoocCourseBuilder() {
-    var name = "";
-    var ppt = "";
-    var article = "";
-    fun buildCourseName(name: String): MoocCourseBuilder {
-        this.name = name
-        return this
-    }
 
-    fun buildCoursePpt(ppt: String): MoocCourseBuilder {
-        this.ppt = ppt
-        return this
-    }
-
-    fun buildCourseArticle(article: String): MoocCourseBuilder {
-        this.article = article
-        return this
-    }
-
-    fun build(): MoocCourse {
-        return MoocCourse(this)
-    }
-}
 
 fun main() {
     val course =
-        MoocCourseBuilder().buildCourseName("Python").buildCoursePpt("python ppt").buildCourseArticle("python article")
+        MoocCourse.MoocCourseBuilder().buildCourseName("Python").buildCoursePpt("python ppt").buildCourseArticle("python article")
             .build()
     println(course)
 }
+
+// StringBuilder
+// StringBuffer
+// guava ImmutableSet
