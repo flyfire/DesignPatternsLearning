@@ -9,12 +9,7 @@ public class JavaDiscountCourse extends JavaCourse {
         super(id, name, price);
     }
 
-    public float getOriginalPrice() {
-        return super.getPrice();
-    }
-
-    @Override
-    public Float getPrice() {
+    public float getDiscountPrice() {
         return super.getPrice() * 0.8f;
     }
 }

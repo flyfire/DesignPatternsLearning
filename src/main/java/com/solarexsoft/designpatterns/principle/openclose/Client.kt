@@ -7,5 +7,5 @@ package com.solarexsoft.designpatterns.principle.openclose
 fun main() {
     val course: ICourse = JavaDiscountCourse(96, "Java", 200.0f);
     val javaCourse: JavaDiscountCourse = course as JavaDiscountCourse;
-    println("id = ${course.id}, name = ${course.name}, price = ${course.getPrice()}, originalPrice = ${javaCourse.originalPrice}")
+    println("id = ${course.id}, name = ${course.name}, price = ${course.getPrice()}, discountPrice = ${javaCourse.discountPrice}")
 }
