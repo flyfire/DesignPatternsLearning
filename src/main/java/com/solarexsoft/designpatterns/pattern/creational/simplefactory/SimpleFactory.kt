@@ -29,3 +29,6 @@ class VideoFactory {
 fun main() {
     VideoFactory.createVideo(JavaVideo::class.java).produce()
 }
+
+// Calendar.java getInstance
+// DriverManager.java getConnection sql connection
