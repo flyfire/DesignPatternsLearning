@@ -34,3 +34,5 @@ fun main(){
     val objectAdapter = ObjectAdapter()
     objectAdapter.request()
 }
+
+// XmlAdapter
