@@ -1,6 +1,5 @@
 package com.solarexsoft.designpatterns.pattern.creational.singleton
 
-import java.security.AccessControlContext
 
 /**
  * Created by houruhou on 2019/9/16.
