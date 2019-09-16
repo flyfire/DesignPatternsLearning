@@ -41,3 +41,6 @@ class Manager private constructor(context: String) {
 fun main() {
     Manager.getInstance("solarex")
 }
+
+// Rumtime.java
+// java.awt.Desktop.java getDesktop
