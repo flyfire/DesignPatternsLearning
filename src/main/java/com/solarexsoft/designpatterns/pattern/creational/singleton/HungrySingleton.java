@@ -22,7 +22,7 @@ public class HungrySingleton implements Serializable{
         }
     }
 
-    public Object readResolve() {
+    private Object readResolve() {
         return hungrySingleton;
     }
 
@@ -40,5 +40,6 @@ public class HungrySingleton implements Serializable{
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream("hungry_singleton.txt"));
         HungrySingleton hungrySingleton = (HungrySingleton) ois.readObject();
         System.out.println("main read object = " + hungrySingleton);
+        System.out.println(instance == hungrySingleton);
     }
 }

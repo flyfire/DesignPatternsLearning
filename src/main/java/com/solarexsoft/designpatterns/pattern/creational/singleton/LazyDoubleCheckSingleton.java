@@ -28,6 +28,17 @@ public class LazyDoubleCheckSingleton implements Serializable{
         return lazyDoubleCheckSingleton;
     }
 
+    private Object readResolve() {
+        if (lazyDoubleCheckSingleton == null) {
+            synchronized (LazyDoubleCheckSingleton.class) {
+                if (lazyDoubleCheckSingleton == null) {
+                    lazyDoubleCheckSingleton = new LazyDoubleCheckSingleton();
+                }
+            }
+        }
+        return lazyDoubleCheckSingleton;
+    }
+
     static class LazyDoubleCheckSingletonRunnable implements Runnable {
         @Override
         public void run() {
@@ -51,5 +62,6 @@ public class LazyDoubleCheckSingleton implements Serializable{
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream("lazy_double_check_singleton.txt"));
         LazyDoubleCheckSingleton doubleCheckSingleton = (LazyDoubleCheckSingleton) ois.readObject();
         System.out.println("main read object singleton = " + doubleCheckSingleton);
+        System.out.println(instance == doubleCheckSingleton);
     }
 }

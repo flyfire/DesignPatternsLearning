@@ -18,6 +18,13 @@ public class LazySingleton implements Serializable {
         return lazySingleton;
     }
 
+    private synchronized Object readResolve() {
+        if (lazySingleton == null) {
+            lazySingleton = new LazySingleton();
+        }
+        return lazySingleton;
+    }
+
     static class LazySingletonRunnable implements Runnable{
 
         @Override
@@ -42,6 +49,7 @@ public class LazySingleton implements Serializable {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream("lazy_singleton.txt"));
         LazySingleton instance = (LazySingleton) ois.readObject();
         System.out.println("main -> read object instance = " + instance);
+        System.out.println(lazySingleton == instance);
     }
 }
 

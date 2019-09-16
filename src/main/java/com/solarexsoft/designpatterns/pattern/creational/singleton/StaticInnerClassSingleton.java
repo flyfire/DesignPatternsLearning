@@ -23,6 +23,10 @@ public class StaticInnerClassSingleton implements Serializable {
         }
     }
 
+    private Object readResolve() {
+        return InnerClass.staticInnerClassSingleton;
+    }
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         StaticInnerClassSingleton innerClassSingleton = InnerClass.staticInnerClassSingleton;
         System.out.println(Thread.currentThread().getName() + "->" + innerClassSingleton);
@@ -37,5 +41,6 @@ public class StaticInnerClassSingleton implements Serializable {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream("static_innerclass_singleton.txt"));
         StaticInnerClassSingleton instance = (StaticInnerClassSingleton) ois.readObject();
         System.out.println("main read object = " + instance);
+        System.out.println(innerClassSingleton == instance);
     }
 }
