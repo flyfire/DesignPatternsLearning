@@ -26,4 +26,4 @@ fun main() {
 
 // Calendar.java clone()
 // Cloneable ArrayList HashMap etc
-// 原型模式攻击单例：不实现Cloneable,clone方法调用getInstance
+// 原型模式攻击单例：不实现Cloneable/clone方法调用getInstance
