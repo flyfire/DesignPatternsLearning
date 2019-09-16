@@ -7,7 +7,7 @@ import java.io.*;
  * Desc:
  */
 public class HungrySingleton implements Serializable{
-    private static HungrySingleton hungrySingleton = new HungrySingleton();
+    private static final HungrySingleton hungrySingleton = new HungrySingleton();
     private HungrySingleton(){
     }
     public static HungrySingleton getInstance() {
