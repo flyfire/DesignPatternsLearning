@@ -34,10 +34,10 @@ public class HungrySingleton implements Serializable{
         t1.start();
         t2.start();
 
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("hungry_singleton"));
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("hungry_singleton.txt"));
         oos.writeObject(instance);
 
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("hungry_singleton"));
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("hungry_singleton.txt"));
         HungrySingleton hungrySingleton = (HungrySingleton) ois.readObject();
         System.out.println("main read object = " + hungrySingleton);
     }
