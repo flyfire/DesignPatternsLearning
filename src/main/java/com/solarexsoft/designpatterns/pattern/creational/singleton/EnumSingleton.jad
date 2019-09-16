@@ -1,0 +1,79 @@
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   EnumSingleton.java
+
+package com.solarexsoft.designpatterns.pattern.creational.singleton;
+
+import java.io.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+public final class EnumSingleton extends Enum
+{
+
+    public static EnumSingleton[] values()
+    {
+        return (EnumSingleton[])$VALUES.clone();
+    }
+
+    public static EnumSingleton valueOf(String name)
+    {
+        return (EnumSingleton)Enum.valueOf(com/solarexsoft/designpatterns/pattern/creational/singleton/EnumSingleton, name);
+    }
+
+    private EnumSingleton(String s, int i)
+    {
+        super(s, i);
+    }
+
+    public Object getData()
+    {
+        return data;
+    }
+
+    public void setData(Object data)
+    {
+        this.data = data;
+    }
+
+    public static EnumSingleton getInstance()
+    {
+        return INSTANCE;
+    }
+
+    public static void main(String args[])
+        throws IOException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException
+    {
+        EnumSingleton enumSingleton = getInstance();
+        enumSingleton.setData(new Object());
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("enum_singleton.txt"));
+        oos.writeObject(enumSingleton);
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("enum_singleton.txt"));
+        EnumSingleton instance = (EnumSingleton)ois.readObject();
+        System.out.println(enumSingleton == instance);
+        System.out.println(enumSingleton.getData() == instance.getData());
+        Class clz = com/solarexsoft/designpatterns/pattern/creational/singleton/EnumSingleton;
+        Constructor constructor = clz.getDeclaredConstructor(new Class[] {
+            java/lang/String, Integer.TYPE
+        });
+        constructor.setAccessible(true);
+        EnumSingleton reflectInstance = (EnumSingleton)constructor.newInstance(new Object[] {
+            "solarex", Integer.valueOf(1)
+        });
+        System.out.println(reflectInstance);
+        System.out.println(enumSingleton == reflectInstance);
+    }
+
+    public static final EnumSingleton INSTANCE;
+    private Object data;
+    private static final EnumSingleton $VALUES[];
+
+    static 
+    {
+        INSTANCE = new EnumSingleton("INSTANCE", 0);
+        $VALUES = (new EnumSingleton[] {
+            INSTANCE
+        });
+    }
+}
