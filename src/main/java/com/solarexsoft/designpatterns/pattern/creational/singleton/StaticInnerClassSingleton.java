@@ -3,6 +3,8 @@ package com.solarexsoft.designpatterns.pattern.creational.singleton;
 import com.sun.org.apache.bcel.internal.classfile.InnerClass;
 
 import java.io.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by houruhou on 2019/9/16.
@@ -10,6 +12,9 @@ import java.io.*;
  */
 public class StaticInnerClassSingleton implements Serializable {
     private StaticInnerClassSingleton(){
+        if (InnerClass.staticInnerClassSingleton != null) {
+            throw new RuntimeException("cant instantiate StaticInnerClassSingleton using reflect");
+        }
     }
     private static class InnerClass {
         // 类初始化锁
@@ -27,7 +32,14 @@ public class StaticInnerClassSingleton implements Serializable {
         return InnerClass.staticInnerClassSingleton;
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        /*
+        Class clz = StaticInnerClassSingleton.class;
+        Constructor constructor = clz.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        StaticInnerClassSingleton reflectInstance = (StaticInnerClassSingleton) constructor.newInstance();
+        System.out.println("reflectInstance = " + reflectInstance);
+        */
         StaticInnerClassSingleton innerClassSingleton = InnerClass.staticInnerClassSingleton;
         System.out.println(Thread.currentThread().getName() + "->" + innerClassSingleton);
         Thread t1 = new Thread(new StaticInnerClassSingletonRunnable(), "t1");
@@ -42,5 +54,13 @@ public class StaticInnerClassSingleton implements Serializable {
         StaticInnerClassSingleton instance = (StaticInnerClassSingleton) ois.readObject();
         System.out.println("main read object = " + instance);
         System.out.println(innerClassSingleton == instance);
+
+        Class clz = StaticInnerClassSingleton.class;
+        Constructor constructor = clz.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        StaticInnerClassSingleton reflectInstanceNew = (StaticInnerClassSingleton) constructor.newInstance();
+        System.out.println(innerClassSingleton);
+        System.out.println("reflectInstanceNew = " + reflectInstanceNew);
+        System.out.println(innerClassSingleton == reflectInstanceNew);
     }
 }
