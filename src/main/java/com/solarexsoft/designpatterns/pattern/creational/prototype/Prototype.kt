@@ -27,3 +27,4 @@ fun main() {
 // Calendar.java clone()
 // Cloneable ArrayList HashMap etc
 // 原型模式攻击单例：不实现Cloneable/clone方法调用getInstance
+// Object clone 是native方法，直接拷贝内存字节流，不进行构造方法的调用
