@@ -1,6 +1,5 @@
 package com.solarexsoft.designpatterns.pattern.structural.adapter
 
-import org.omg.CORBA.Object
 
 /**
  * Created by houruhou on 2019/9/16.
