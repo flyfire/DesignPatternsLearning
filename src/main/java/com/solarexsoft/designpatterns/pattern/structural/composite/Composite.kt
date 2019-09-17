@@ -73,3 +73,7 @@ fun main() {
     mooc.add(programming)
     mooc.print()
 }
+
+// ArrayList.addAll(Collection)
+// HashMap.putAll(Map)
+// java.awt.Component
