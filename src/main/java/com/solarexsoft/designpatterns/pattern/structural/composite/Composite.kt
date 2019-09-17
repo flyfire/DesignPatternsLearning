@@ -76,4 +76,4 @@ fun main() {
 
 // ArrayList.addAll(Collection)
 // HashMap.putAll(Map)
-// java.awt.Component
+// java.awt.Component java.awt.Container.add(Component)
