@@ -38,14 +38,14 @@ abstract class Bank constructor(protected open val account: Account) {
 class ABCBank(override val account: Account) : Bank(account) {
     override fun openAccount(): Account {
         println("打开农业银行账号")
-        return account
+        return account.openAccount()
     }
 }
 
 class ICBCBank(override val account: Account): Bank(account) {
     override fun openAccount(): Account {
         println("打开工商银行账号")
-        return account
+        return account.openAccount()
     }
 }
 
@@ -55,3 +55,7 @@ fun main() {
     val icbcBank = ICBCBank(SavingAccount())
     icbcBank.openAccount().showAccountType()
 }
+// 抽象部分和实现部分都可以独立的扩展自己
+// jdbc Driver DriverInfo DriverManager.getConnection()
+// Connection
+// registerDriver 得到不同的jdbc数据库实现
