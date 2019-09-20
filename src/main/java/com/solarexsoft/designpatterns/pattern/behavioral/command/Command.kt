@@ -54,3 +54,5 @@ fun main() {
     staff.addCommand(lightOffCommand)
     staff.executeCommands()
 }
+// Runnable
+// junit.framework.Test run
