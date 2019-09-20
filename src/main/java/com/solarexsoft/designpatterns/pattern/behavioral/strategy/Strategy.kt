@@ -36,10 +36,12 @@ class PromotionStrategyFactory private constructor() {
 
     companion object {
         private val PROMOTION_STRATEGY_MAP = mutableMapOf<String, PromotionStrategy>()
-        val NON_POMOTION = EmptyPromotionStrategy()
+        private val NON_POMOTION = EmptyPromotionStrategy()
+        const val LIJIAN = "lijian"
+        const val DISCOUNT = "discount"
         init {
-            PROMOTION_STRATEGY_MAP["lijian"] = LiJianPromotionStrategy()
-            PROMOTION_STRATEGY_MAP["discount"] = DiscountPromotionStrategy()
+            PROMOTION_STRATEGY_MAP[LIJIAN] = LiJianPromotionStrategy()
+            PROMOTION_STRATEGY_MAP[DISCOUNT] = DiscountPromotionStrategy()
         }
 
         fun getPromotionStrategy(key: String): PromotionStrategy {
@@ -57,5 +59,8 @@ fun main() {
 
     val activity1111 = PromotionActivity(120f, LiJianPromotionStrategy())
     println(activity1111.getPrice())
+
+    val activity101 = PromotionActivity(1000f, PromotionStrategyFactory.getPromotionStrategy(PromotionStrategyFactory.DISCOUNT))
+    println(activity101.getPrice())
 }
 
