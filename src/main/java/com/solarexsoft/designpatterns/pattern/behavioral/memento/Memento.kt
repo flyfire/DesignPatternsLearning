@@ -54,3 +54,6 @@ fun main() {
     article.restoreFromMemento(manager.getMemento())
     println(article)
 }
+
+// spring webflow
+// StateManageableMessageContext createMessageMemento/restoreMessages
