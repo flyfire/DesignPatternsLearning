@@ -26,6 +26,28 @@ class PromotionActivity(var originalPrice: Float, var promotionStrategy: Promoti
     }
 }
 
+class EmptyPromotionStrategy : PromotionStrategy {
+    override fun doPromotion(price: Float): Float {
+        return price
+    }
+}
+
+class PromotionStrategyFactory private constructor() {
+
+    companion object {
+        private val PROMOTION_STRATEGY_MAP = mutableMapOf<String, PromotionStrategy>()
+        val NON_POMOTION = EmptyPromotionStrategy()
+        init {
+            PROMOTION_STRATEGY_MAP["lijian"] = LiJianPromotionStrategy()
+            PROMOTION_STRATEGY_MAP["discount"] = DiscountPromotionStrategy()
+        }
+
+        fun getPromotionStrategy(key: String): PromotionStrategy {
+            return PROMOTION_STRATEGY_MAP[key] ?: NON_POMOTION
+        }
+    }
+}
+
 fun main() {
     val activity618 = PromotionActivity(800f, DiscountPromotionStrategy())
     println(activity618.getPrice())
@@ -36,3 +58,4 @@ fun main() {
     val activity1111 = PromotionActivity(120f, LiJianPromotionStrategy())
     println(activity1111.getPrice())
 }
+
