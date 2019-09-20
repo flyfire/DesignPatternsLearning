@@ -55,3 +55,6 @@ fun main() {
     val java: ACourse = JavaCourse()
     java.makeCourse()
 }
+
+// AbstractList
+// AbstractMap addAll
